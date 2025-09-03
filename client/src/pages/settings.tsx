@@ -307,9 +307,9 @@ export default function SettingsPage() {
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
-                          {getStatusBadge(tool.status, tool.isActive)}
+                          {getStatusBadge(tool.status, tool.isActive || false)}
                           <Switch
-                            checked={tool.isActive}
+                            checked={tool.isActive || false}
                             onCheckedChange={(checked) => handleToolToggle(tool.name, checked)}
                             disabled={updateToolMutation.isPending}
                             data-testid={`switch-${tool.name.toLowerCase().replace(/\s+/g, '-')}`}

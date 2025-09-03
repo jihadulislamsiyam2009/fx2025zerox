@@ -14,7 +14,7 @@ function Router() {
   return (
     <div className="min-h-screen bg-background cyber-grid">
       <Sidebar />
-      <div className="ml-64">
+      <div className="ml-0 md:ml-64">
         <Switch>
           <Route path="/" component={Dashboard} />
           <Route path="/new-scan" component={NewScan} />

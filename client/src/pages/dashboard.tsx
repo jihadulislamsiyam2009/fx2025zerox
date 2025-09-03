@@ -96,7 +96,7 @@ export default function Dashboard() {
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Active Scans</p>
                   <p className="text-3xl font-bold text-primary" data-testid="stat-active-scans">
-                    {statsLoading ? "..." : stats?.activeScans || 0}
+                    {statsLoading ? "..." : (stats as any)?.activeScans || 0}
                   </p>
                 </div>
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -113,7 +113,7 @@ export default function Dashboard() {
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Vulnerabilities Found</p>
                   <p className="text-3xl font-bold text-destructive" data-testid="stat-vulnerabilities">
-                    {statsLoading ? "..." : stats?.totalVulnerabilities || 0}
+                    {statsLoading ? "..." : (stats as any)?.totalVulnerabilities || 0}
                   </p>
                 </div>
                 <div className="w-12 h-12 bg-destructive/10 rounded-lg flex items-center justify-center">
@@ -130,7 +130,7 @@ export default function Dashboard() {
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Success Rate</p>
                   <p className="text-3xl font-bold text-primary" data-testid="stat-success-rate">
-                    {statsLoading ? "..." : `${stats?.successRate || 100}%`}
+                    {statsLoading ? "..." : `${(stats as any)?.successRate || 100}%`}
                   </p>
                 </div>
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -147,7 +147,7 @@ export default function Dashboard() {
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Targets Scanned</p>
                   <p className="text-3xl font-bold text-foreground" data-testid="stat-targets-scanned">
-                    {statsLoading ? "..." : stats?.targetsScanned || 0}
+                    {statsLoading ? "..." : (stats as any)?.targetsScanned || 0}
                   </p>
                 </div>
                 <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
@@ -163,7 +163,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           {/* Active Scans */}
           <div className="lg:col-span-2">
-            <ScanCard scans={activeScans || []} isLoading={scansLoading} />
+            <ScanCard scans={(activeScans as any) || []} isLoading={scansLoading} />
           </div>
 
           {/* Quick Actions */}
@@ -204,7 +204,7 @@ export default function Dashboard() {
         {/* Terminal Output and Vulnerability Summary */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <TerminalOutput />
-          <VulnerabilitySummary vulnerabilities={stats?.vulnerabilityCounts} />
+          <VulnerabilitySummary vulnerabilities={(stats as any)?.vulnerabilityCounts} />
         </div>
 
         {/* Tool Status Grid */}

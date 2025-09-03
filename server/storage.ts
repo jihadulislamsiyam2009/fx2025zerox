@@ -135,6 +135,8 @@ export class MemStorage implements IStorage {
       ...insertVulnerability,
       id,
       discoveredAt: new Date(),
+      evidence: insertVulnerability.evidence || {},
+      recommendation: insertVulnerability.recommendation || null,
     };
     this.vulnerabilities.set(id, vulnerability);
     return vulnerability;
@@ -156,7 +158,13 @@ export class MemStorage implements IStorage {
       return updated;
     } else {
       const id = randomUUID();
-      const tool: ToolStatus = { ...toolData, id };
+      const tool: ToolStatus = { 
+        ...toolData, 
+        id,
+        version: toolData.version || null,
+        lastUsed: toolData.lastUsed || null,
+        isActive: toolData.isActive ?? true
+      };
       this.tools.set(toolData.name, tool);
       return tool;
     }
