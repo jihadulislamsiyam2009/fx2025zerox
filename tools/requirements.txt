@@ -1,0 +1,76 @@
+# Core dependencies for security scanning tools
+requests>=2.28.0
+urllib3>=1.26.0
+
+# DNS and network utilities
+dnspython>=2.2.0
+python-whois>=0.7.3
+
+# HTML parsing and web scraping
+beautifulsoup4>=4.11.0
+lxml>=4.9.0
+
+# SSL/TLS certificate handling
+pyOpenSSL>=22.0.0
+cryptography>=37.0.0
+
+# Data processing and analysis
+jsonschema>=4.0.0
+pyyaml>=6.0
+
+# Subdomain enumeration dependencies
+sublist3r>=1.0
+python-subbrute>=1.2.1
+
+# Additional network scanning utilities
+python-nmap>=0.7.1
+masscan>=1.0.0
+
+# Web application testing
+selenium>=4.5.0
+scrapy>=2.6.0
+
+# Email and OSINT gathering
+python-emailahoy>=0.1.3
+shodan>=1.28.0
+
+# Vulnerability database access
+python-nvd>=0.7
+cve-search-api>=1.0
+
+# Logging and monitoring
+colorlog>=6.7.0
+tqdm>=4.64.0
+
+# Testing and development
+pytest>=7.0.0
+pytest-cov>=4.0.0
+black>=22.0.0
+flake8>=5.0.0
+
+# Security and authentication
+passlib>=1.7.4
+bcrypt>=4.0.0
+
+# Database connectivity (if needed)
+psycopg2-binary>=2.9.0
+pymongo>=4.3.0
+redis>=4.3.0
+
+# Image and file processing
+Pillow>=9.2.0
+python-magic>=0.4.27
+
+# API and web framework dependencies
+flask>=2.2.0
+fastapi>=0.85.0
+aiohttp>=3.8.0
+
+# Machine learning for pattern recognition
+scikit-learn>=1.1.0
+numpy>=1.23.0
+pandas>=1.5.0
+
+# Concurrency and async processing
+asyncio>=3.4.3
+concurrent-futures>=3.1.1
