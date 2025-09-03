@@ -38,7 +38,21 @@ class ToolService {
       "SQLiDetector": "sql_injection.py",
       "Nmap": "network_scan.py",
       "Masscan": "network_scan.py",
-      "Metasploit": "network_scan.py"
+      "Metasploit": "network_scan.py",
+      "Directory Scanner": "directory_scan.py",
+      "Dirb": "directory_scan.py",
+      "Gobuster": "directory_scan.py",
+      "Dirsearch": "directory_scan.py",
+      "Parameter Fuzzer": "parameter_fuzzer.py",
+      "Ffuf": "parameter_fuzzer.py",
+      "Wfuzz": "parameter_fuzzer.py",
+      "Param-miner": "parameter_fuzzer.py",
+      "Port Scanner": "port_scanner.py",
+      "Rustscan": "port_scanner.py",
+      "Web Vulnerability Scanner": "web_vulnerability_scanner.py",
+      "Nikto": "web_vulnerability_scanner.py",
+      "Nuclei": "web_vulnerability_scanner.py",
+      "Wapiti": "web_vulnerability_scanner.py"
     };
 
     const scriptName = toolMap[toolName];
@@ -56,9 +70,7 @@ class ToolService {
     return new Promise((resolve) => {
       const pythonProcess = spawn("python3", [
         scriptPath,
-        "--tool", toolName.toLowerCase(),
-        "--target", target,
-        "--scan-type", scanType
+        target
       ]);
 
       let stdout = "";

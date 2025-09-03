@@ -60,12 +60,15 @@ export default function NewScan() {
   };
 
   const scanTypes = [
+    { value: "full_audit", label: "Full Security Audit", description: "Comprehensive security assessment with all tools" },
     { value: "subdomain", label: "Subdomain Enumeration", description: "Discover subdomains and expand attack surface" },
     { value: "xss", label: "XSS Vulnerability Scan", description: "Detect cross-site scripting vulnerabilities" },
     { value: "sql_injection", label: "SQL Injection Test", description: "Test for database injection flaws" },
     { value: "network", label: "Network Reconnaissance", description: "Port scanning and service discovery" },
+    { value: "directory", label: "Directory Bruteforce", description: "Discover hidden directories and files" },
+    { value: "parameters", label: "Parameter Fuzzing", description: "Find hidden parameters and test injections" },
+    { value: "web_vuln", label: "Web Vulnerability Scan", description: "Comprehensive web application security testing" },
     { value: "osint", label: "OSINT Gathering", description: "Open source intelligence collection" },
-    { value: "full_audit", label: "Full Security Audit", description: "Comprehensive security assessment" },
   ];
 
   return (
@@ -201,9 +204,12 @@ function getToolsForScanType(scanType: string): string[] {
     "subdomain": ["Sublist3r", "Subfinder", "Sudomy", "Dome"],
     "xss": ["XSStrike", "Dalfox", "XSS-Checker", "xssFuzz"],
     "sql_injection": ["SQLMap", "Ghauri", "GraphQLmap", "SQLiDetector"],
-    "network": ["Nmap", "Masscan"],
-    "osint": ["Sublist3r", "Subfinder", "Sudomy"],
-    "full_audit": ["All available tools"],
+    "network": ["Nmap", "Masscan", "Port Scanner"],
+    "directory": ["Directory Scanner", "Dirb", "Gobuster", "Dirsearch"],
+    "parameters": ["Parameter Fuzzer", "Ffuf", "Wfuzz", "Param-miner"],
+    "web_vuln": ["Web Vuln Scanner", "Nikto", "Nuclei", "Wapiti"],
+    "osint": ["Sublist3r", "Subfinder", "Sudomy", "OSINT Gatherer"],
+    "full_audit": ["All 20+ Advanced Security Tools"],
   };
   return toolMap[scanType] || [];
 }
@@ -214,6 +220,9 @@ function getEstimatedTime(scanType: string): string {
     "xss": "10-30 minutes",
     "sql_injection": "15-45 minutes",
     "network": "5-20 minutes",
+    "directory": "5-15 minutes",
+    "parameters": "3-12 minutes",
+    "web_vuln": "8-20 minutes",
     "osint": "10-25 minutes",
     "full_audit": "30-90 minutes",
   };

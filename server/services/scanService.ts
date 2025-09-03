@@ -150,9 +150,15 @@ class ScanService {
       "subdomain": ["Sublist3r", "Subfinder", "Sudomy", "Dome"],
       "xss": ["XSStrike", "Dalfox", "XSS-Checker", "xssFuzz"],
       "sql_injection": ["SQLMap", "Ghauri", "GraphQLmap", "SQLiDetector"],
-      "network": ["Nmap", "Masscan"],
-      "full_audit": ["Sublist3r", "Subfinder", "XSStrike", "Dalfox", "SQLMap", "Nmap", "Masscan"],
-      "osint": ["Sublist3r", "Subfinder", "Sudomy"]
+      "network": ["Nmap", "Masscan", "Port Scanner"],
+      "directory": ["Directory Scanner", "Dirb", "Gobuster", "Dirsearch"],
+      "parameters": ["Parameter Fuzzer", "Ffuf", "Wfuzz", "Param-miner"],
+      "web_vuln": ["Web Vulnerability Scanner", "Nikto", "Nuclei", "Wapiti"],
+      "full_audit": [
+        "Sublist3r", "XSStrike", "SQLMap", "Nmap", "OSINT Gatherer",
+        "Directory Scanner", "Parameter Fuzzer", "Port Scanner", "Web Vulnerability Scanner"
+      ],
+      "osint": ["Sublist3r", "Subfinder", "Sudomy", "OSINT Gatherer"]
     };
 
     return toolMap[scanType] || toolMap["full_audit"];
