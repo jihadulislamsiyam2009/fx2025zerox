@@ -46,11 +46,25 @@ export default function Dashboard() {
       scanType: "sql_injection"
     },
     {
-      title: "Port Scan",
-      description: "Network port discovery",
+      title: "AI Analysis",
+      description: "Advanced AI vulnerability detection",
       icon: Target,
       color: "accent",
-      scanType: "network"
+      scanType: "ai_analysis"
+    },
+    {
+      title: "Web Scanner",
+      description: "Comprehensive web security scan",
+      icon: CheckCircle,
+      color: "secondary",
+      scanType: "comprehensive"
+    },
+    {
+      title: "Directory Fuzzer",
+      description: "Hidden directory discovery",
+      icon: Clock,
+      color: "outline",
+      scanType: "directory"
     },
   ];
 

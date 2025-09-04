@@ -92,8 +92,16 @@ class XSSScanner:
             if params:
                 # Test each parameter
                 for param_name in params:
-                    param_vulns = self.test_parameter_xss(param_name, 'dalfox')
-                    vulnerabilities.extend(param_vulns)
+                    if self.test_single_parameter(self.target, param_name, 'dalfox'):
+                        vulnerabilities.append(self.create_vulnerability(
+                            'reflected_xss',
+                            'high',
+                            f'Reflected XSS in {param_name} parameter',
+                            f'Parameter {param_name} is vulnerable to reflected XSS attacks via Dalfox',
+                            self.target,
+                            {'parameter': param_name, 'method': 'dalfox'},
+                            'Implement proper input validation and output encoding'
+                        ))
             else:
                 # Try common parameter names
                 common_params = ['q', 'search', 'query', 'id', 'page', 'cat', 'category']

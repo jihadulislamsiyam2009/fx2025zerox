@@ -4,7 +4,7 @@ hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["cacert", "cargo", "libiconv", "libxcrypt", "openssl", "pkg-config", "rustc"]
+packages = ["cacert", "cargo", "geckodriver", "libiconv", "libxcrypt", "libyaml", "nmap", "openssl", "pkg-config", "rustc", "xcodebuild", "zlib", "masscan", "wget", "curl", "git"]
 
 [deployment]
 deploymentTarget = "autoscale"
@@ -40,3 +40,4 @@ args = "npm run dev"
 waitForPort = 5000
 
 [agent]
+expertMode = true

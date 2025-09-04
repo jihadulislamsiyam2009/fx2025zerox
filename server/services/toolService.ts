@@ -51,8 +51,14 @@ class ToolService {
       "Rustscan": "port_scanner.py",
       "Web Vulnerability Scanner": "web_vulnerability_scanner.py",
       "Nikto": "web_vulnerability_scanner.py",
-      "Nuclei": "web_vulnerability_scanner.py",
-      "Wapiti": "web_vulnerability_scanner.py"
+      "Nuclei": "advanced_web_scanner.py",
+      "Wapiti": "web_vulnerability_scanner.py",
+      "Advanced Web Scanner": "advanced_web_scanner.py",
+      "AI Vulnerability Analyzer": "ai_vulnerability_analyzer.py",
+      "Directory Fuzzer": "advanced_web_scanner.py",
+      "Business Logic Analyzer": "ai_vulnerability_analyzer.py",
+      "Template Injection Scanner": "ai_vulnerability_analyzer.py",
+      "Prototype Pollution Scanner": "ai_vulnerability_analyzer.py"
     };
 
     const scriptName = toolMap[toolName];
@@ -68,9 +74,12 @@ class ToolService {
     const scriptPath = path.join(toolsDir, scriptName);
     
     return new Promise((resolve) => {
+      // Determine tool arguments based on tool name
+      const toolArgs = this.getToolArguments(toolName, target, scanType);
+      
       const pythonProcess = spawn("python3", [
         scriptPath,
-        target
+        ...toolArgs
       ]);
 
       let stdout = "";
@@ -123,6 +132,36 @@ class ToolService {
         });
       }, 300000);
     });
+  }
+
+  private getToolArguments(toolName: string, target: string, scanType: string): string[] {
+    const baseArgs = ["--target", target, "--scan-type", scanType];
+    
+    // Map tool names to their specific arguments
+    const toolArgMap: { [key: string]: string[] } = {
+      "Sublist3r": ["--tool", "sublist3r"],
+      "Subfinder": ["--tool", "subfinder"],
+      "Sudomy": ["--tool", "sudomy"],
+      "Dome": ["--tool", "dome"],
+      "XSStrike": ["--tool", "xsstrike"],
+      "Dalfox": ["--tool", "dalfox"],
+      "XSS-Checker": ["--tool", "xss-checker"],
+      "xssFuzz": ["--tool", "xssfuzz"],
+      "SQLMap": ["--tool", "sqlmap"],
+      "Ghauri": ["--tool", "ghauri"],
+      "GraphQLmap": ["--tool", "graphqlmap"],
+      "SQLiDetector": ["--tool", "sqlidetector"],
+      "Advanced Web Scanner": ["--tool", "comprehensive"],
+      "AI Vulnerability Analyzer": ["--tool", "comprehensive"],
+      "Directory Fuzzer": ["--tool", "directory"],
+      "Business Logic Analyzer": ["--tool", "business_logic"],
+      "Template Injection Scanner": ["--tool", "advanced_injection"],
+      "Prototype Pollution Scanner": ["--tool", "advanced_injection"],
+      "Nuclei": ["--tool", "nuclei"]
+    };
+    
+    const specificArgs = toolArgMap[toolName] || ["--tool", toolName.toLowerCase()];
+    return [...baseArgs, ...specificArgs];
   }
 
   async testToolAvailability(toolName: string): Promise<boolean> {

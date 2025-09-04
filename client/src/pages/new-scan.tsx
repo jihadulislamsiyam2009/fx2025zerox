@@ -68,6 +68,11 @@ export default function NewScan() {
     { value: "directory", label: "Directory Bruteforce", description: "Discover hidden directories and files" },
     { value: "parameters", label: "Parameter Fuzzing", description: "Find hidden parameters and test injections" },
     { value: "web_vuln", label: "Web Vulnerability Scan", description: "Comprehensive web application security testing" },
+    { value: "ai_analysis", label: "AI Vulnerability Analysis", description: "Machine learning-based advanced threat detection" },
+    { value: "advanced_web", label: "Advanced Web Scanner", description: "Nuclei templates and cutting-edge web testing" },
+    { value: "business_logic", label: "Business Logic Testing", description: "Test for business logic flaws and bypasses" },
+    { value: "template_injection", label: "Template Injection", description: "Server-side template injection detection" },
+    { value: "comprehensive", label: "Ultimate Security Scan", description: "All advanced tools with maximum coverage" },
     { value: "osint", label: "OSINT Gathering", description: "Open source intelligence collection" },
   ];
 

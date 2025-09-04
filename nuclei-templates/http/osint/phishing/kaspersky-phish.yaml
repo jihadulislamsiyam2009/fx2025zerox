@@ -1,0 +1,36 @@
+id: kaspersky-phish
+
+info:
+  name: kaspersky phishing Detection
+  author: rxerium
+  severity: info
+  description: |
+    A kaspersky phishing website was detected
+  reference:
+    - https://kaspersky.co.uk
+  metadata:
+    max-request: 1
+  tags: phishing,kaspersky,osint
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    host-redirects: true
+    max-redirects: 2
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - 'Kaspersky Cyber Security Solutions for Home and Business  | Kaspersky'
+
+      - type: status
+        status:
+          - 200
+
+      - type: dsl
+        dsl:
+          - '!contains(host,"kaspersky.co.uk")'
+          - '!contains(host,"kaspersky.com")'
+# digest: 4b0a00483046022100bf899841e365a8a66a4d2b20c0c66a841a5b9f0bf0cb91b0f0bdbd8b3f3da440022100d8355edfc2339e04a0bf70620a652aee612bf32e107633cf32b2c139f6ba8030:922c64590222798bb761d5b6d8e72950

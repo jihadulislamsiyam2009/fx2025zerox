@@ -52,6 +52,13 @@ export class MemStorage implements IStorage {
       { name: "Nmap", status: "ready", successRate: 100, version: "7.94", isActive: true },
       { name: "Masscan", status: "ready", successRate: 100, version: "1.3.2", isActive: true },
       { name: "Metasploit", status: "ready", successRate: 94, version: "6.3.42", isActive: true },
+      { name: "Advanced Web Scanner", status: "ready", successRate: 98, version: "3.0.0", isActive: true },
+      { name: "AI Vulnerability Analyzer", status: "ready", successRate: 95, version: "3.0.0", isActive: true },
+      { name: "Directory Fuzzer", status: "ready", successRate: 97, version: "3.0.0", isActive: true },
+      { name: "Business Logic Analyzer", status: "ready", successRate: 92, version: "3.0.0", isActive: true },
+      { name: "Template Injection Scanner", status: "ready", successRate: 94, version: "3.0.0", isActive: true },
+      { name: "Prototype Pollution Scanner", status: "ready", successRate: 93, version: "3.0.0", isActive: true },
+      { name: "Nuclei", status: "ready", successRate: 99, version: "3.1.0", isActive: true },
     ];
 
     defaultTools.forEach(tool => {
@@ -60,6 +67,12 @@ export class MemStorage implements IStorage {
         ...tool,
         id,
         lastUsed: null,
+        category: "general",
+        reliability: 85,
+        averageExecutionTime: 0,
+        vulnerabilitiesFound: 0,
+        totalScans: 0,
+        configuration: {},
       };
       this.tools.set(tool.name, toolStatus);
     });
@@ -110,6 +123,15 @@ export class MemStorage implements IStorage {
       toolsUsed: [],
       successRate: 0,
       logs: [],
+      riskScore: 0,
+      riskLevel: "unknown",
+      aiAnalysis: {},
+      wordlistsUsed: [],
+      executionTime: 0,
+      criticalVulns: 0,
+      highVulns: 0,
+      mediumVulns: 0,
+      lowVulns: 0,
     };
     this.scans.set(id, scan);
     return scan;
@@ -137,6 +159,16 @@ export class MemStorage implements IStorage {
       discoveredAt: new Date(),
       evidence: insertVulnerability.evidence || {},
       recommendation: insertVulnerability.recommendation || null,
+      cveId: insertVulnerability.cveId || null,
+      exploitability: insertVulnerability.exploitability ?? 0,
+      impact: insertVulnerability.impact ?? 0,
+      remediation: insertVulnerability.remediation || null,
+      references: insertVulnerability.references || [],
+      toolUsed: insertVulnerability.toolUsed || "unknown",
+      confidenceLevel: insertVulnerability.confidenceLevel ?? 50,
+      verified: insertVulnerability.verified ?? false,
+      falsePositive: insertVulnerability.falsePositive ?? false,
+      tags: insertVulnerability.tags || [],
     };
     this.vulnerabilities.set(id, vulnerability);
     return vulnerability;
@@ -159,10 +191,18 @@ export class MemStorage implements IStorage {
     } else {
       const id = randomUUID();
       const tool: ToolStatus = { 
-        ...toolData, 
         id,
+        name: toolData.name,
+        status: toolData.status || "ready",
+        successRate: toolData.successRate ?? 100,
         version: toolData.version || null,
         lastUsed: toolData.lastUsed || null,
+        category: toolData.category || "general",
+        reliability: toolData.reliability ?? 85,
+        averageExecutionTime: toolData.averageExecutionTime ?? 0,
+        vulnerabilitiesFound: toolData.vulnerabilitiesFound ?? 0,
+        totalScans: toolData.totalScans ?? 0,
+        configuration: toolData.configuration || {},
         isActive: toolData.isActive ?? true
       };
       this.tools.set(toolData.name, tool);

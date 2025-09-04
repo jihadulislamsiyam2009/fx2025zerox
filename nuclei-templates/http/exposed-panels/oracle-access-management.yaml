@@ -1,0 +1,54 @@
+id: oracle-access-management
+
+info:
+  name: Oracle Access Management Login Panel - Detect
+  author: righettod
+  severity: info
+  description: Oracle Access Management login panel was detected.
+  reference:
+    - https://www.oracle.com/security/identity-management/access-management/
+  classification:
+    cpe: cpe:2.3:a:oracle:access_manager:*:*:*:*:*:*:*:*
+  metadata:
+    verified: true
+    max-request: 2
+    vendor: oracle
+    product: access_manager
+    shodan-query:
+      - "http.title:\"Oracle Access Management\""
+      - http.title:"oracle access management"
+      - http.html:"/oam/pages/css/login_page.css"
+    fofa-query:
+      - "title=\"Oracle Access Management\""
+      - title="oracle access management"
+      - body="/oam/pages/css/login_page.css"
+    google-query: intitle:"oracle access management"
+  tags: panel,oracle,login,detect
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/oam/pages/login.jsp"
+      - "{{BaseURL}}"
+
+    stop-at-first-match: true
+    host-redirects: true
+    max-redirects: 2
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "<title>Login - Oracle Access Management"
+          - "/oam/pages/images"
+          - "/oam/server/"
+        condition: or
+
+    extractors:
+      - type: regex
+        part: body
+        group: 1
+        regex:
+          - '(?i)Login\s+-\s+Oracle\s+Access\s+Management\s+([a-z0-9]+)</title>'
+# digest: 490a00463044022078ebf56d2f8f71b9573ccea613d81d729d9f0281373983e307ea0f3ac85f2f15022066b02a47fb74619c3e3b53fc22db603701d584893dc6fe5389e2cbec4166a0f5:922c64590222798bb761d5b6d8e72950
